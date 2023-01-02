@@ -53,7 +53,9 @@ function checkAnswer() {
         incrementScore();
     } else if (gameType === "multiple") {
         displayMultipleQuestion(num1, num2);
-    } else {
+    } else if (gameType === "subtract") { 
+        displaySubtractionQuestion(num1, num2);
+    }else {
         alert(`Awwww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
         incrementWrongAnswer();
     }
@@ -77,6 +79,8 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"]; 
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -111,7 +115,11 @@ function displayAdditonQuestion(operand1, operand2) {
 
 }
 
-function displaySubtractionQuestion() {
+function displaySubtractionQuestion(operand1, operand2) {
+
+    getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+    getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
+    document.getElementById(operator).textContent = "-";
 
 }
 
